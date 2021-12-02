@@ -11,6 +11,7 @@ declare -a jamftomcatnodes
 jamftomcatnodes=( jamf.example.com jamf2.example.com )
 
 function Health_Check {
+    # Note certificate must be valid on jamf site. if you use a self signed cert add a -k to this curl command.
     healthCheckResult=$(curl -s https://${1}:8443/healthCheck.html |jq -r .)
     # Uncomment the varible below to test a failed healthcheck.
     # healthCheckResult='[{"healthCode":1,"httpCode":503,"description":"DBConnectionError"}]'
